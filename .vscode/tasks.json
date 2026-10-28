@@ -1,20 +1,15 @@
 {
     "tasks": [
         {
-            "type": "cppbuild",
+            "type": "shell",
             "label": "C/C++: g++ 生成活动文件",
-            "command": "/usr/bin/g++",
+            "command": "/bin/bash",
             "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "-I${workspaceFolder}/includes",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}",
-                "`pkg-config","--cflags","--libs","opencv4`"
+                "-c",
+                "mkdir -p \"${workspaceFolder}/build/${relativeFileDirname}\" && /usr/bin/g++ -fdiagnostics-color=always -g -I\"${workspaceFolder}/includes\" \"${file}\" -o \"${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}\" $(pkg-config --cflags --libs opencv4)"
             ],
             "options": {
-                "cwd": "${fileDirname}",
+                "cwd": "${fileDirname}"
             },
             "problemMatcher": [
                 "$gcc"
